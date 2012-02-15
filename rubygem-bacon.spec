@@ -1,60 +1,53 @@
-%define gemdir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
-%define gemname bacon
-%define geminstdir %{gemdir}/gems/%{gemname}-%{version}
+# Generated from bacon-1.1.0.gem by gem2rpm5 0.6.7 -*- rpm-spec -*-
+%define	rbname	bacon
 
-Summary:        A ruby-based testing framework
-Name:           rubygem-%{gemname}
-Version:        1.1.0
+Summary:	a small RSpec clone
+Name:		rubygem-%{rbname}
+
+Version:	1.1.0
 Release:	2
-Group:          Development/Ruby 
-License:        MIT
-URL:            http://chneukirchen.org/repos/bacon
-Source0:        http://gems.rubyforge.org/gems/%{gemname}-%{version}.gem
-Requires:       rubygems
-Requires:       ruby(abi) = 1.8
-BuildRequires:  rubygems
-BuildRequires:  rubygem(rake)
-BuildArch:      noarch
-Provides:       rubygem(%{gemname}) = %{version}
+Group:		Development/Ruby
+License:	GPLv2+ or Ruby
+URL:		http://chneukirchen.org/repos/bacon
+Source0:	http://rubygems.org/gems/%{rbname}-%{version}.gem
+BuildRequires:	rubygems 
+BuildArch:	noarch
 
 %description
-Bacon is a small RSpec clone weighing less than
-350 LoC but nevertheless providing all essential features.
+Bacon is a small RSpec clone weighing less than 350 LoC but nevertheless
+providing all essential features.  http://github.com/chneukirchen/bacon
+
+%package	doc
+Summary:	Documentation for %{name}
+Group:		Books/Computer books
+Requires:	%{name} = %{EVRD}
+
+%description	doc
+Documents, RDoc & RI documentation for %{name}.
 
 %prep
-
+%setup -q
 
 %build
-
+%gem_build -f test
 
 %install
-mkdir -p $RPM_BUILD_ROOT%{gemdir}
-gem install --local --install-dir $RPM_BUILD_ROOT%{gemdir} \
-            --force --rdoc %{SOURCE0}
-mkdir -p $RPM_BUILD_ROOT/%{_bindir}
-mv $RPM_BUILD_ROOT%{gemdir}/bin/* $RPM_BUILD_ROOT/%{_bindir}
-rmdir $RPM_BUILD_ROOT%{gemdir}/bin
-find $RPM_BUILD_ROOT%{geminstdir}/bin -type f |xargs chmod a+x
-
-# Derop weird non-utf8 characters in e-mail framework
-LANG=C sed 's/\xc2//g' -i $RPM_BUILD_ROOT%{geminstdir}/ChangeLog
-
-%check
-cd $RPM_BUILD_ROOT%{geminstdir}
-rake test --trace
+%gem_install
 
 %files
 %{_bindir}/bacon
-%dir %{geminstdir}
-%dir %{geminstdir}/bin
-%attr(0755,root,root) %{geminstdir}/bin/bacon
-%{geminstdir}/lib
-%{geminstdir}/Rakefile
-%doc %{geminstdir}/test
-%doc %{geminstdir}/README
-%doc %{geminstdir}/RDOX
-%doc %{geminstdir}/COPYING
-%doc %{geminstdir}/ChangeLog
-%doc %{gemdir}/doc/%{gemname}-%{version}
-%{gemdir}/cache/%{gemname}-%{version}.gem
-%{gemdir}/specifications/%{gemname}-%{version}.gemspec
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/bin
+%{ruby_gemdir}/gems/%{rbname}-%{version}/bin/bacon
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/lib
+%{ruby_gemdir}/gems/%{rbname}-%{version}/lib/*.rb
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/lib/autotest
+%{ruby_gemdir}/gems/%{rbname}-%{version}/lib/autotest/*.rb
+%{ruby_gemdir}/specifications/%{rbname}-%{version}.gemspec
+
+%files doc
+%{ruby_gemdir}/doc/%{rbname}-%{version}
+%{ruby_gemdir}/gems/%{rbname}-%{version}/RDOX
+%{ruby_gemdir}/gems/%{rbname}-%{version}/README
+%dir %{ruby_gemdir}/gems/%{rbname}-%{version}/test
+%{ruby_gemdir}/gems/%{rbname}-%{version}/test/*.rb
