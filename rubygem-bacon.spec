@@ -5,7 +5,7 @@
 Summary:        A ruby-based testing framework
 Name:           rubygem-%{gemname}
 Version:        1.1.0
-Release:        %mkrel 1
+Release:	2
 Group:          Development/Ruby 
 License:        MIT
 URL:            http://chneukirchen.org/repos/bacon
