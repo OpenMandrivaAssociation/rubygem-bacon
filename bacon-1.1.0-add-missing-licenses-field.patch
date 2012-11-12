@@ -1,0 +1,8 @@
+--- rubygem-bacon-1.1.0/metadata.licenses~	2012-02-15 20:37:47.129359066 +0100
++++ rubygem-bacon-1.1.0/metadata	2012-02-15 20:38:41.155411560 +0100
+@@ -62,4 +62,5 @@ signing_key:
+ specification_version: 2
+ summary: a small RSpec clone
+ test_files: []
++licenses: []
+ 
