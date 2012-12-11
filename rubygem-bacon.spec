@@ -55,3 +55,19 @@ gzip metadata
 %{ruby_gemdir}/gems/%{rbname}-%{version}/README
 %dir %{ruby_gemdir}/gems/%{rbname}-%{version}/test
 %{ruby_gemdir}/gems/%{rbname}-%{version}/test/*.rb
+
+
+%changelog
+* Wed Feb 15 2012 Per Øyvind Karlsen <peroyvind@mandriva.org> 1.1.0-2
++ Revision: 774498
+- add missing 'licenses' field to metadata
+- regenerate spec with gem2rpm5
+- mass rebuild of ruby packages against ruby 1.9.1
+
+  + Alexander Khrukin <akhrukin@mandriva.org>
+    - removed clean section
+
+* Wed Sep 07 2011 Alexander Barakin <abarakin@mandriva.org> 1.1.0-1
++ Revision: 698564
+- imported package rubygem-bacon
+
