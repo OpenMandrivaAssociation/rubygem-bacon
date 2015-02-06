@@ -5,7 +5,7 @@ Summary:	a small RSpec clone
 Name:		rubygem-%{rbname}
 
 Version:	1.1.0
-Release:	2
+Release:	3
 Group:		Development/Ruby
 License:	GPLv2+ or Ruby
 URL:		http://chneukirchen.org/repos/bacon
