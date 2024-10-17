@@ -8,7 +8,7 @@ Version:	1.1.0
 Release:	3
 Group:		Development/Ruby
 License:	GPLv2+ or Ruby
-URL:		http://chneukirchen.org/repos/bacon
+URL:		https://chneukirchen.org/repos/bacon
 Source0:	http://rubygems.org/gems/%{rbname}-%{version}.gem
 Patch0:		bacon-1.1.0-add-missing-licenses-field.patch
 BuildRequires:	rubygems 
